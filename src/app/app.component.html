@@ -1,20 +1,54 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+      <div style="text-align:left;">
+          <div *ngIf="todos.length >= 0" class="card border-dark mb-3 col-sm-8" style="margin: 0 auto;">
+            <div class="card-body text-dark">
+              <input type="text" class="form-control" [(ngModel)]="todo.text" placeholder="What needs to be done?" (keyup.enter)="addTodo()">  
+              <ul class="list-group list-group-flush" style="margin-top : 5px;">
+                <li class="list-group-item row" *ngFor="let todo of todos" style="list-style: none;">
+                <div class="row">
+                  <div class="col-sm-10">
+                  {{todo.val.name}} 
+                </div>
+                <div class="col-sm-1">
+                  <button *ngIf="todo.val.status === 'active'" class="fa fa-square-o btn btn-sm btn-primary" (click)="changeTodoStatus(todo.val.id, 'completed')" ></button>
+                  <button *ngIf="todo.val.status === 'completed'" class="fa fa-check-square-o btn btn-sm btn-warning" (click)="changeTodoStatus(todo.val.id, 'active')" ></button> 
+                  </div>
+                <div class="col-sm-1">
+                    <button (click)="deleteTodo(todo.val.id)" class="fa fa-close btn btn-sm btn-danger"></button>
+                  </div>
+                </div>
+                </li>
+              </ul>
+              <div class="row" style="padding: 15px 15px 15px 0px;">
+                  <div class="col-sm-6">
+                    <button (click)="fetchTodosAndCount()" class="btn btn-primary">All - {{todosCount.all}}</button>
+                    <button (click)="statusBasedTodos('completed')" class="btn btn-success">Completed - {{todosCount.completed}}</button>
+                    <button (click)="statusBasedTodos('active')" class="btn btn-info">active - {{(todosCount.active)}}</button>
+                  </div>
+                  <div class="col-sm-6">
+                    <button class="btn btn-default" (click)="changeStatusForAll('completed')">Make All Complete</button>
+                    <button class="btn btn-default" (click)="changeStatusForAll('active')">Make All Active</button>
+                  </div>
+                </div>
+            </div>
+          </div>
+          
+      </div>
+  
+  <style>
+  #todoComponent {
+      z-index: 1150px;
+  }
+  completed {
+    background-color: green;
+  } active {
+    background-color: blue;
+  }
+  </style>
+  
+  
+  
+  
+  
+  
+  
 
