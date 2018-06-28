@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApolloModule, Apollo} from 'apollo-angular';
 import {HttpLinkModule, HttpLink} from 'apollo-angular-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
-import { todoMutation } from './mutations/user.mutations';
+import { todoMutation } from './mutations/todo.mutations';
 
 interface AsyncIterator<T> {
   next(value?: any): Promise<IteratorResult<T>>;
@@ -110,7 +110,6 @@ changeStatusForAll (status) {
       }
     }).subscribe(({data}) => {
       this.fetchTodosAndCount();
-      console.log("COUNT FETCHED");
     });
 }
 
